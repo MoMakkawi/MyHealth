@@ -4,6 +4,8 @@ using AutoMapper;
 using MyHealth.Application.Features.Diseases.Commands.CreateDisease;
 using MyHealth.Application.Features.Diseases.Commands.DeleteDisease;
 using MyHealth.Application.Features.Diseases.Commands.UpdateDiseases;
+using MyHealth.Application.Features.Diseases.Queries.GetAllDiseasesByPatieantId;
+using MyHealth.Application.Features.Diseases.Queries.GetDieaseDetailById;
 using MyHealth.Application.Features.DrRequests.Commands.ChangeDrRequestStatus;
 using MyHealth.Application.Features.DrRequests.Commands.DeleteDrRequest;
 using MyHealth.Application.Features.DrRequests.Commands.SendDrRequestToPatient;
