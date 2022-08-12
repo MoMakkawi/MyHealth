@@ -11,7 +11,7 @@ namespace MyHealth.Persistence;
 
 public static class PersistenceContainer
 {
-    public static IServiceCollection AddPersistenceServices(this IServiceCollection services )
+    public static IServiceCollection AddPersistenceServices(this IServiceCollection services)
     {
         //, IConfiguration conf
 

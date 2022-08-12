@@ -7,5 +7,4 @@ public class Disease
     public Guid PatientId { get; set; }
     public string? Name { get; set; }
     public string? Discription { get; set; }
-    public IEnumerable<Guid>? AnalysisPictureGuids { get; set; }
 }

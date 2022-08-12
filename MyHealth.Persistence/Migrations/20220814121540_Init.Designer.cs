@@ -12,8 +12,8 @@ using MyHealth.Persistence;
 namespace MyHealth.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220811181427_Initial")]
-    partial class Initial
+    [Migration("20220814121540_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
