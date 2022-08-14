@@ -9,10 +9,10 @@ namespace MyHealth.Application.Features.DrRequests.Commands.ChangeDrRequestStatu
 
 public class UpdateDrRequestStatusCommandHandler : IRequestHandler<UpdateDrRequestStatusCommand>
 {
-    private readonly IAsyncRepository<DrRequest> repository;
+    private readonly IAsyncDrRequestRepository repository;
     private readonly IMapper mapper;
 
-    public UpdateDrRequestStatusCommandHandler(IAsyncRepository<DrRequest> repository , IMapper mapper)
+    public UpdateDrRequestStatusCommandHandler(IAsyncDrRequestRepository repository , IMapper mapper)
     {
         this.repository = repository;
         this.mapper = mapper;   

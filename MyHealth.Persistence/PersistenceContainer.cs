@@ -1,6 +1,4 @@
-﻿using System;
-
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -11,17 +9,18 @@ namespace MyHealth.Persistence;
 
 public static class PersistenceContainer
 {
-    public static IServiceCollection AddPersistenceServices(this IServiceCollection services)
+    public static IServiceCollection AddPersistenceServices(this IServiceCollection services ,IConfiguration configuration)
     {
-        //, IConfiguration conf
 
-        //services.AddDbContext<ApplicationDbContext>(options =>
-        //options.UseSqlServer(conf.GetConnectionString("ConnectionString")));
+        services.AddDbContext<ApplicationDbContext>(options =>
+            options.UseSqlServer(configuration.GetConnectionString("MyHealthContext") ?? throw new InvalidOperationException("Connection string 'MyHealthAPIContext' not found.")));
+
 
         services.AddScoped(typeof(IAsyncRepository<>), typeof(BaseRepository<>));
 
-        services.AddScoped<IAsyncDiseaseRepository, DiseaseRepository>();
-        services.AddScoped<IAsyncDrRequestRepository, DrRequestRepository>();
+        services.AddScoped(typeof(IAsyncDiseaseRepository), typeof(DiseaseRepository));
+        services.AddScoped(typeof(IAsyncDrRequestRepository), typeof(DrRequestRepository));
+        services.AddScoped(typeof(IAsyncAnalysisPictureRepository), typeof(AnalysisPictureRepository));
 
         return services;
     }

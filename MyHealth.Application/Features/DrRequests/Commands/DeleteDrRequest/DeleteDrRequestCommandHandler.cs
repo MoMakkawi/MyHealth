@@ -7,9 +7,9 @@ namespace MyHealth.Application.Features.DrRequests.Commands.DeleteDrRequest;
 
 public class DeleteDrRequestCommandHandler : IRequestHandler<DeleteDrRequestCommand>
 {
-    private readonly IAsyncRepository<DrRequest> repository;
+    private readonly IAsyncDrRequestRepository repository;
 
-    public DeleteDrRequestCommandHandler(IAsyncRepository<DrRequest> repository)
+    public DeleteDrRequestCommandHandler(IAsyncDrRequestRepository repository)
     {
         this.repository = repository;
     }

@@ -9,10 +9,10 @@ namespace MyHealth.Application.Features.DrRequests.Commands.SendDrRequestToPatie
 {
     public class CreateDrRequestCommandHandler : IRequestHandler<CreateDrRequestCommand , Guid>
     {
-        private readonly IAsyncRepository<DrRequest> repository;
+        private readonly IAsyncDrRequestRepository repository;
         private readonly IMapper mapper;
 
-        public CreateDrRequestCommandHandler(IAsyncRepository<DrRequest> repository, IMapper mapper)
+        public CreateDrRequestCommandHandler(IAsyncDrRequestRepository repository, IMapper mapper)
         {
             this.repository = repository;
             this.mapper = mapper;

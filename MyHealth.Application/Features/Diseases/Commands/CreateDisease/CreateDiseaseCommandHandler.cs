@@ -9,12 +9,14 @@ namespace MyHealth.Application.Features.Diseases.Commands.CreateDisease;
 
 public class CreateDiseaseCommandHandler : IRequestHandler<CreateDiseaseCommand , Guid>
 {
-    private readonly IAsyncRepository<Disease> repository;
+    private readonly IAsyncDiseaseRepository diseaseRepository;
+    private readonly IAsyncAnalysisPictureRepository analysisPictureRepository;
     private readonly IMapper mapper;
 
-    public CreateDiseaseCommandHandler(IAsyncRepository<Disease> repository, IMapper mapper)
+    public CreateDiseaseCommandHandler(IAsyncDiseaseRepository diseaseRepository , IAsyncAnalysisPictureRepository analysisPictureRepository, IMapper mapper)
     {
-        this.repository = repository;
+        this.diseaseRepository = diseaseRepository;
+        this.analysisPictureRepository = analysisPictureRepository;
         this.mapper = mapper;
     }
 
@@ -24,10 +26,10 @@ public class CreateDiseaseCommandHandler : IRequestHandler<CreateDiseaseCommand 
 
         await new CreateDiseaseCommandValidator().ValidateAsync(request);
 
-        disease = await repository.AddAsync(disease);
+        await analysisPictureRepository.AddAnalysisPictures(request.AnalysisPictures);
+        disease = await diseaseRepository.AddAsync(disease);
 
         return disease.Id;
-
 
     }
 }

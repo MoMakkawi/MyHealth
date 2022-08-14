@@ -1,5 +1,7 @@
 ﻿using MediatR;
 
+using MyHealth.Domain;
+
 namespace MyHealth.Application.Features.Diseases.Commands.UpdateDiseases;
 
 public class UpdateDiseasesCommand : IRequest
@@ -9,5 +11,5 @@ public class UpdateDiseasesCommand : IRequest
     public Guid PatientId { get; set; }
     public string? Name { get; set; }
     public string? Discription { get; set; }
-    public IEnumerable<Guid>? AnalysisPictureGuids { get; set; }
+    public IEnumerable<AnalysisPicture>? AnalysisPictures { get; set; }
 }

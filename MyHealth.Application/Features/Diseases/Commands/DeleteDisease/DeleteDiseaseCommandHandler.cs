@@ -7,16 +7,19 @@ namespace MyHealth.Application.Features.Diseases.Commands.DeleteDisease;
 
 public class DeleteDiseaseCommandHandler : IRequestHandler<DeleteDiseaseCommand>
 {
-    private IAsyncRepository<Disease> repository;
+    private readonly IAsyncAnalysisPictureRepository analysisPictureRepository;
+    private readonly IAsyncDiseaseRepository diseaseRepository;
 
-    public DeleteDiseaseCommandHandler(IAsyncRepository<Disease> repository)
+    public DeleteDiseaseCommandHandler(IAsyncDiseaseRepository diseaseRepository, IAsyncAnalysisPictureRepository analysisPictureRepository)
     {
-        this.repository = repository;
+        this.diseaseRepository = diseaseRepository;
+        this.analysisPictureRepository = analysisPictureRepository;
     }
 
     public async Task<Unit> Handle(DeleteDiseaseCommand request, CancellationToken cancellationToken)
     {
-        await repository.DeleteAsync(request.DiseaseId);
+        await analysisPictureRepository.DeleteAllAnalysisPicturesByDiseaseId(request.DiseaseId);
+        await diseaseRepository.DeleteAsync(request.DiseaseId);
 
         return Unit.Value;
     }
