@@ -22,14 +22,14 @@ namespace MyHealth.API.Controllers
             this.mediator = mediator;
         }
 
-        [HttpGet("{drId}", Name = "GetAllDrRequestsByDrId")]
+        [HttpGet("GetAllDrRequestsByDrId/{drId}", Name = "GetAllDrRequestsByDrId")]
         public async Task<ActionResult<List<GetAllDrRequestsByDrIdViewModel>>> GetAllDrRequestsByDrId(Guid drId)
         {
             var diseases = await mediator.Send(new GetAllDrRequestsByDrIdQuery() { DrId = drId });
             return Ok(diseases);
         }
 
-        [HttpGet("{patientId}", Name = "GetAllDrRequestsByPatientId")]
+        [HttpGet("GetAllDrRequestsByPatientId/{PatientId}", Name = "GetAllDrRequestsByPatientId")]
         public async Task<ActionResult<List<GetAllDrRequestsByPatientIdViewModel>>> GetAllDrRequestsByPatientId(Guid patientId)
         {
             var diseases = await mediator.Send(new GetAllDrRequestsByPatientIdQuery() { PatientId = patientId });
@@ -43,7 +43,7 @@ namespace MyHealth.API.Controllers
             return Ok(id);
         }
 
-        [HttpDelete("{id}", Name = "DeleteDrRequest")]
+        [HttpDelete("DeleteDrRequestByDrRequestId/{id}", Name = "DeleteDrRequest")]
         public async Task<ActionResult> Delete(Guid id)
         {
             var deleteDrRequestCommand = new DeleteDrRequestCommand() { DrRequestId = id };

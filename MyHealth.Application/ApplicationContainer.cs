@@ -5,14 +5,12 @@ using MediatR;
 
 using Microsoft.Extensions.DependencyInjection;
 
-namespace MyHealth.Persistence;
+namespace MyHealth.Application;
 
 public static class ApplicationContainer
 {
     public static IServiceCollection AddApplicationServices(this IServiceCollection services)
     {
-        var CleanArchitecture = Assembly.GetExecutingAssembly();
-
         services.AddAutoMapper(Assembly.GetExecutingAssembly());
         services.AddMediatR(Assembly.GetExecutingAssembly());
 

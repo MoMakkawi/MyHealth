@@ -1,4 +1,5 @@
 using MyHealth.Persistence;
+using MyHealth.Application;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,14 +16,6 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-
-//builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
-
-//builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
-//{
-//    containerBuilder.RegisterMediatR(typeof(Program).Assembly);
-//    containerBuilder.RegisterModule<ProductModule>();
-//});
 
 
 var app = builder.Build();
