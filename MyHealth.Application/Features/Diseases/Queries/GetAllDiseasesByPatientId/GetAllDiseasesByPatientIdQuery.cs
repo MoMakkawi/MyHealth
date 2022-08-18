@@ -2,7 +2,7 @@
 
 namespace MyHealth.Application.Features.Diseases.Queries.GetAllDiseasesByPatientId;
 
-public class GetAllDiseasesByPatientIdQuery : IRequest<IEnumerable<GetAllDiseasesByPatientIdViewModel>>
+public class GetAllDiseasesByPatientIdQuery : IRequest<List<GetAllDiseasesByPatientIdViewModel>>
 {
-    public Guid PatientId { get; set; }
+    public string? PatientId { get; set; }
 }

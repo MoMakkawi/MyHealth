@@ -3,8 +3,10 @@
 public class Disease
 {
     public Guid Id { get; set; }
-    public Guid DrId { get; set; }
-    public Guid PatientId { get; set; }
+    public string? DrId { get; set; }
+    public string? PatientId { get; set; }
     public string? Name { get; set; }
     public string? Discription { get; set; }
+    public DateTime DiagnosisDate { get; set; }
+    public ICollection<Picture?>? AnalysisPictures { get; set; }
 }

@@ -9,6 +9,6 @@ public class GetDieaseDetailByDieaseIdViewModel
     public Guid PatientId { get; set; }
     public string? Name { get; set; }
     public string? Discription { get; set; }
-    public IEnumerable<AnalysisPicture>? AnalysisPicture { get; set; }
+    public IEnumerable<Picture>? AnalysisPicture { get; set; }
     public DoctorDTO? Doctor { get; set; }
 }

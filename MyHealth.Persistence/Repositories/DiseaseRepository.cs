@@ -13,7 +13,7 @@ public class DiseaseRepository : BaseRepository<Disease>, IAsyncDiseaseRepositor
     {
     }
 
-    public async Task<List<Disease>> GetAllByPatieantIdAsync(Guid patieantId)
+    public async Task<List<Disease>> GetAllByPatieantIdAsync(string patieantId)
     {
         return await _dbContext.Diseases.Where(d => d.PatientId == patieantId).ToListAsync();
     }

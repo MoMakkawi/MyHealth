@@ -7,7 +7,7 @@ namespace MyHealth.Application.Features.DrRequests.Commands.SendDrRequestToPatie
     {
         public Guid DrId { get; set; }
         public Guid PatientId { get; set; }
-        public DateTime RequestTime { get; set; }
+        public DateTime RequestTime => DateTime.Now;
         public DrRequestStatus Status { get; set; }
     }
 }

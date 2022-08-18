@@ -23,14 +23,14 @@ namespace MyHealth.API.Controllers
         }
 
         [HttpGet("GetAllDiseasesByPatientId/{PatientId}", Name = "GetAllDiseasesByPatientId")]
-        public async Task<ActionResult<List<GetAllDiseasesByPatientIdViewModel>>> GetAllDiseasesByPatientId(Guid PatientId)
+        public async Task<ActionResult<List<GetAllDiseasesByPatientIdViewModel>>> GetAllDiseasesByPatientId(string PatientId)
         {
             var diseases = await mediator.Send(new GetAllDiseasesByPatientIdQuery() { PatientId = PatientId });
             return Ok(diseases);
         }
 
         [HttpGet("GetDieaseDetailByDieaseId/{dieaseId}", Name = "GetDieaseDetailByDieaseId")]
-        public async Task<ActionResult<GetDieaseDetailByDieaseIdViewModel>> GetDieaseDetailByDieaseId(Guid dieaseId)
+        public async Task<ActionResult<GetDieaseDetailByDieaseIdViewModel>> GetDieaseDetailByDieaseId(string dieaseId)
         {
             var disease = await mediator.Send(new GetDieaseDetailByDieaseIdQuery() { DieaseId = dieaseId });
             return Ok(disease);

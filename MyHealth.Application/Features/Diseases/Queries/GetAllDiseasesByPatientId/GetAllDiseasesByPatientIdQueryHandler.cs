@@ -5,7 +5,7 @@ using MyHealth.Application.Contracts;
 namespace MyHealth.Application.Features.Diseases.Queries.GetAllDiseasesByPatientId;
 
 public class GetAllDiseasesByPatientIdQueryHandler
-    : IRequestHandler<GetAllDiseasesByPatientIdQuery, IEnumerable<GetAllDiseasesByPatientIdViewModel>>
+    : IRequestHandler<GetAllDiseasesByPatientIdQuery, List<GetAllDiseasesByPatientIdViewModel>>
 {
     private readonly IAsyncDiseaseRepository repository;
     private readonly IMapper mapper;
@@ -16,9 +16,9 @@ public class GetAllDiseasesByPatientIdQueryHandler
         this.mapper = mapper;
     }
 
-    public async Task<IEnumerable<GetAllDiseasesByPatientIdViewModel>> Handle(GetAllDiseasesByPatientIdQuery request, CancellationToken cancellationToken)
+    public async Task<List<GetAllDiseasesByPatientIdViewModel>> Handle(GetAllDiseasesByPatientIdQuery request, CancellationToken cancellationToken)
     {
         var allDiseasesByPatieantId = await repository.GetAllByPatieantIdAsync(request.PatientId);
-        return mapper.Map<IEnumerable<GetAllDiseasesByPatientIdViewModel>>(allDiseasesByPatieantId);
+        return mapper.Map <List<GetAllDiseasesByPatientIdViewModel>>(allDiseasesByPatieantId);
     }
 }

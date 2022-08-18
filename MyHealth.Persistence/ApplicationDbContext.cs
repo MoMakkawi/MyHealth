@@ -8,7 +8,9 @@ namespace MyHealth.Persistence;
 
 public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
 {
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
     : base(options)
     {
     }
@@ -22,10 +24,8 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
         // Add your customizations after calling base.OnModelCreating(builder);
 
         builder.Entity<Disease>().ToTable("Diseases");
-        builder.Entity<AnalysisPicture>().ToTable("AnalysisPictures");
         builder.Entity<DrRequest>().ToTable("DrRequests");
     }
     public DbSet<Disease> Diseases { get; set; }
-    public DbSet<AnalysisPicture> AnalysisPictures { get; set; }
     public DbSet<DrRequest> DrRequests { get; set; }
 }

@@ -1,9 +1,8 @@
 ﻿namespace MyHealth.Domain;
 
-public class AnalysisPicture
+public class Picture
 {
-    public Guid AnalysisPictureId { get; set; }
-    public Guid DiseaseId { get; set; }
+    public Guid PictureId { get; set; }
     public string? FileName { get; set; }
     public string? Description { get; set; }
     public string? Base64data { get; set; }

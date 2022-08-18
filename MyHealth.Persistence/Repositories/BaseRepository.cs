@@ -13,10 +13,7 @@ namespace MyHealth.Persistence.Repositories
             _dbContext = dbContext;
         }
 
-        public async Task<T> GetByIdAsync(Guid id)
-        {
-            return await _dbContext.Set<T>().FindAsync(id);
-        }
+        public async Task<T> GetByIdAsync(string id) => await _dbContext.Set<T>().FindAsync(id);
 
 
         public async Task<T> AddAsync(T entity)

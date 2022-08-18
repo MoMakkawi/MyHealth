@@ -155,49 +155,26 @@ namespace MyHealth.Persistence.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("MyHealth.Domain.AnalysisPicture", b =>
-                {
-                    b.Property<Guid>("AnalysisPictureId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Base64data")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ContentType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("DiseaseId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("FileName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("AnalysisPictureId");
-
-                    b.ToTable("AnalysisPictures", (string)null);
-                });
-
             modelBuilder.Entity("MyHealth.Domain.Disease", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<DateTime>("DiagnosisDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Discription")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("DrId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("DrId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("PatientId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("PatientId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -210,11 +187,11 @@ namespace MyHealth.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("DrId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("DrId")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("PatientId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("PatientId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("RequestTime")
                         .HasColumnType("datetime2");
@@ -225,6 +202,34 @@ namespace MyHealth.Persistence.Migrations
                     b.HasKey("DrRequestId");
 
                     b.ToTable("DrRequests", (string)null);
+                });
+
+            modelBuilder.Entity("MyHealth.Domain.Picture", b =>
+                {
+                    b.Property<Guid>("PictureId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Base64data")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ContentType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("DiseaseId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("FileName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("PictureId");
+
+                    b.HasIndex("DiseaseId");
+
+                    b.ToTable("Picture");
                 });
 
             modelBuilder.Entity("MyHealth.Persistence.Identity.ApplicationUser", b =>
@@ -250,6 +255,9 @@ namespace MyHealth.Persistence.Migrations
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
+
+                    b.Property<int>("Gender")
+                        .HasColumnType("int");
 
                     b.Property<string>("LastName")
                         .IsRequired()
@@ -279,8 +287,8 @@ namespace MyHealth.Persistence.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ProfilePicture")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid?>("ProfilePicturePictureId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
@@ -301,6 +309,8 @@ namespace MyHealth.Persistence.Migrations
                         .IsUnique()
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.HasIndex("ProfilePicturePictureId");
 
                     b.ToTable("AspNetUsers", (string)null);
                 });
@@ -354,6 +364,27 @@ namespace MyHealth.Persistence.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("MyHealth.Domain.Picture", b =>
+                {
+                    b.HasOne("MyHealth.Domain.Disease", null)
+                        .WithMany("AnalysisPictures")
+                        .HasForeignKey("DiseaseId");
+                });
+
+            modelBuilder.Entity("MyHealth.Persistence.Identity.ApplicationUser", b =>
+                {
+                    b.HasOne("MyHealth.Domain.Picture", "ProfilePicture")
+                        .WithMany()
+                        .HasForeignKey("ProfilePicturePictureId");
+
+                    b.Navigation("ProfilePicture");
+                });
+
+            modelBuilder.Entity("MyHealth.Domain.Disease", b =>
+                {
+                    b.Navigation("AnalysisPictures");
                 });
 #pragma warning restore 612, 618
         }
