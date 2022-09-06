@@ -24,7 +24,7 @@ namespace MyHealth.Application.Features.DrRequests.Commands.SendDrRequestToPatie
 
             drRequest = await repository.AddAsync(drRequest);
 
-            return drRequest.DrRequestId;
+            return drRequest.Id;
 
         }
     }

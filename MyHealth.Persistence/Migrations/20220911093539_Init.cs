@@ -43,7 +43,7 @@ namespace MyHealth.Persistence.Migrations
                 name: "DrRequests",
                 columns: table => new
                 {
-                    DrRequestId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     DrId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PatientId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     RequestTime = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -51,7 +51,7 @@ namespace MyHealth.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_DrRequests", x => x.DrRequestId);
+                    table.PrimaryKey("PK_DrRequests", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(

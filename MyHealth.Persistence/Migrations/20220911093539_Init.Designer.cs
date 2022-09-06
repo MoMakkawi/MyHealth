@@ -12,7 +12,7 @@ using MyHealth.Persistence;
 namespace MyHealth.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220905072023_Init")]
+    [Migration("20220911093539_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -185,7 +185,7 @@ namespace MyHealth.Persistence.Migrations
 
             modelBuilder.Entity("MyHealth.Domain.DrRequest", b =>
                 {
-                    b.Property<Guid>("DrRequestId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -201,7 +201,7 @@ namespace MyHealth.Persistence.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.HasKey("DrRequestId");
+                    b.HasKey("Id");
 
                     b.ToTable("DrRequests", (string)null);
                 });

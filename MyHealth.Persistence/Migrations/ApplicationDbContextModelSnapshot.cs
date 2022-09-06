@@ -183,7 +183,7 @@ namespace MyHealth.Persistence.Migrations
 
             modelBuilder.Entity("MyHealth.Domain.DrRequest", b =>
                 {
-                    b.Property<Guid>("DrRequestId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -199,7 +199,7 @@ namespace MyHealth.Persistence.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.HasKey("DrRequestId");
+                    b.HasKey("Id");
 
                     b.ToTable("DrRequests", (string)null);
                 });
