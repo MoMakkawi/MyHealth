@@ -31,7 +31,7 @@ public class UserRepository : IAsyncUserRepository
 
     public async Task DeleteAsync(Guid id)
     {
-        var user = await _dbContext.Users.FindAsync(id);
+        var user = await _dbContext.Users.FindAsync(id.ToString());
         _dbContext.Users.Remove(user!);
 
         await _dbContext.SaveChangesAsync();

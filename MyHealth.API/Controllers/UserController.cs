@@ -3,6 +3,7 @@
 using Microsoft.AspNetCore.Mvc;
 
 using MyHealth.Application.Features.Users.Commands.CreateUser;
+using MyHealth.Application.Features.Users.Commands.DeleteUser;
 using MyHealth.Application.Features.Users.Commands.UpdateUser;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -46,8 +47,10 @@ public class UserController : ControllerBase
         return Ok();
     }
 
-    [HttpDelete("{id}")]
-    public void Delete(int id)
+    [HttpDelete("Delete/{id}")]
+    public async Task<ActionResult> DeleteUser(Guid id)
     {
+        await mediator.Send(new DeleteUserCommand() { userId = id });
+        return NoContent();
     }
 }
