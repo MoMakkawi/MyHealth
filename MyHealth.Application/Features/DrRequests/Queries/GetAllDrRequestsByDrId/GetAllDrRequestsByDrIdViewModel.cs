@@ -1,10 +1,10 @@
-﻿using MyHealth.Application.DTOs;
-using MyHealth.Domain;
+﻿using MyHealth.Domain;
+using MyHealth.Domain.DTOs;
 
 namespace MyHealth.Application.Features.DrRequests.Queries.GetAllDrRequestsByDrId;
 public class GetAllDrRequestsByDrIdViewModel
 {
-    public DoctorDTO? Doctor { get; set; }
+    public UserPersonalInfoDTO? Doctor { get; set; }
     public DateTime RequestTime { get; set; }
     public DrRequestStatus Status { get; set; }
 }

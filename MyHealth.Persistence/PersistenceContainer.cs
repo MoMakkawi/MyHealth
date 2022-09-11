@@ -20,6 +20,7 @@ public static class PersistenceContainer
 
         services.AddScoped(typeof(IAsyncDiseaseRepository), typeof(DiseaseRepository));
         services.AddScoped(typeof(IAsyncDrRequestRepository), typeof(DrRequestRepository));
+        services.AddScoped(typeof(IAsyncUserRepository),typeof(UserRepository));
 
         return services;
     }
