@@ -10,7 +10,9 @@ using MyHealth.Application.Features.DrRequests.Commands.DeleteDrRequest;
 using MyHealth.Application.Features.DrRequests.Commands.SendDrRequestToPatient;
 using MyHealth.Application.Features.DrRequests.Queries.GetAllDrRequestsByDrId;
 using MyHealth.Application.Features.DrRequests.Queries.GetAllDrRequestsByPatientId;
+using MyHealth.Application.Features.Users.Commands.CreateUser;
 using MyHealth.Domain;
+using MyHealth.Domain.DTOs;
 
 namespace MyHealth.Application.Profiles;
 
@@ -29,5 +31,7 @@ public class AutoMapperProfile : Profile
         CreateMap<DrRequest, UpdateDrRequestStatusCommand>().ReverseMap();
         CreateMap<DrRequest, DeleteDrRequestCommand>().ReverseMap();
         CreateMap<DrRequest, CreateDrRequestCommand>().ReverseMap();
+
+        CreateMap<ApplicationUserDTO, CreateUserCommand>().ReverseMap();
     }
 }

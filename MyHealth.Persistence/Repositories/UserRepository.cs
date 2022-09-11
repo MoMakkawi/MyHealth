@@ -21,11 +21,12 @@ public class UserRepository : IAsyncUserRepository
 
     public async Task<ApplicationUserDTO> AddAsync(ApplicationUserDTO appUserDTO)
     {
-        ApplicationUser user = mapper.Map<ApplicationUser>(appUserDTO); 
+        ApplicationUser user = mapper.Map<ApplicationUser>(appUserDTO);
         await _dbContext.Users.AddAsync(user);
         await _dbContext.SaveChangesAsync();
 
-        return appUserDTO;
+        var dto = mapper.Map<ApplicationUserDTO>(user);
+        return dto;
     }
 
     public async Task DeleteAsync(Guid id)
@@ -64,8 +65,10 @@ class UsersMapper : Profile
     public UsersMapper()
     {
         CreateMap<ApplicationUserDTO, ApplicationUser>()
+            .ForMember(dest => dest.Id , opt => opt.Ignore())
             .ForMember(dest => dest.PhoneNumberConfirmed, src => src.MapFrom(val => true))
             .ForMember(dest => dest.EmailConfirmed, src => src.MapFrom(val => true))
-            .ReverseMap();
+            .ReverseMap()
+            .ForMember(dest => dest.Id , opt => opt.MapFrom(src =>  new Guid(src.Id)));
     }
 }
