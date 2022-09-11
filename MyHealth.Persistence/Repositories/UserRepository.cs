@@ -46,8 +46,26 @@ public class UserRepository : IAsyncUserRepository
 
     public async Task UpdateAsync(ApplicationUserDTO userDTO)
     {
+        var currentUser = await _dbContext.Users.FindAsync(userDTO.Id.ToString());
         var user = mapper.Map<ApplicationUser>(userDTO);
-        _dbContext.Entry(user).State = EntityState.Modified;
+        user.Id = userDTO.Id.ToString();
+
+        _dbContext.Entry<ApplicationUser>(currentUser!).CurrentValues.SetValues(user);
+
+
+        _dbContext.Entry(user).Property(u => u.UserName).IsModified = false;
+        _dbContext.Entry(user).Property(u => u.AccessFailedCount).IsModified = false;
+        _dbContext.Entry(user).Property(u => u.ConcurrencyStamp).IsModified = false;
+        _dbContext.Entry(user).Property(u => u.EmailConfirmed).IsModified = false;
+        _dbContext.Entry(user).Property(u => u.LockoutEnabled).IsModified = false;
+        _dbContext.Entry(user).Property(u => u.LockoutEnd).IsModified = false;
+        _dbContext.Entry(user).Property(u => u.NormalizedEmail).IsModified = false;
+        _dbContext.Entry(user).Property(u => u.NormalizedUserName).IsModified = false;
+        _dbContext.Entry(user).Property(u => u.PasswordHash).IsModified = false;
+        _dbContext.Entry(user).Property(u => u.PhoneNumberConfirmed).IsModified = false;
+        _dbContext.Entry(user).Property(u => u.SecurityStamp).IsModified = false;
+        _dbContext.Entry(user).Property(u => u.TwoFactorEnabled).IsModified = false;
+
         await _dbContext.SaveChangesAsync();
     }
 

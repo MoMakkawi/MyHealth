@@ -3,6 +3,7 @@
 using Microsoft.AspNetCore.Mvc;
 
 using MyHealth.Application.Features.Users.Commands.CreateUser;
+using MyHealth.Application.Features.Users.Commands.UpdateUser;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -20,7 +21,7 @@ public class UserController : ControllerBase
     }
 
     [HttpGet]
-    public IEnumerable<string> Get()
+    public IEnumerable<string> GetUsers()
     {
         return new string[] { "value1", "value2" };
     }
@@ -38,9 +39,11 @@ public class UserController : ControllerBase
         return id;
     }
 
-    [HttpPut("{id}")]
-    public void Put(int id, [FromBody] string value)
+    [HttpPut]
+    public async Task<ActionResult> Put([FromBody] UpdateUserCommand updateUser)
     {
+        await mediator.Send(updateUser);
+        return Ok();
     }
 
     [HttpDelete("{id}")]
