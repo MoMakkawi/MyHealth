@@ -71,7 +71,10 @@ public class UserRepository : IAsyncUserRepository
 
     public async Task<List<ApplicationUserDTO>> GetAllApplicationUsersDTOs()
     {
-        var users = await _dbContext.Users.ToListAsync();
+        var users = await _dbContext.Users
+            .Include(u => u.ProfilePicture)
+            .ToListAsync();
+
         var UserDTOs = mapper.Map<List<ApplicationUserDTO>>(users);
         return UserDTOs;
     }

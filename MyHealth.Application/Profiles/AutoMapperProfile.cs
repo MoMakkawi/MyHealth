@@ -12,6 +12,7 @@ using MyHealth.Application.Features.DrRequests.Queries.GetAllDrRequestsByDrId;
 using MyHealth.Application.Features.DrRequests.Queries.GetAllDrRequestsByPatientId;
 using MyHealth.Application.Features.Users.Commands.CreateUser;
 using MyHealth.Application.Features.Users.Commands.UpdateUser;
+using MyHealth.Application.Features.Users.Queries.GetAllUsers;
 using MyHealth.Domain;
 using MyHealth.Domain.DTOs;
 
@@ -35,5 +36,7 @@ public class AutoMapperProfile : Profile
 
         CreateMap<ApplicationUserDTO, CreateUserCommand>().ReverseMap();
         CreateMap<ApplicationUserDTO, UpdateUserCommand>().ReverseMap();
+        CreateMap<ApplicationUserDTO, GetAllUsersViewModel>()
+            .ReverseMap();
     }
 }

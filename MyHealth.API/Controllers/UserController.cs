@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using MyHealth.Application.Features.Users.Commands.CreateUser;
 using MyHealth.Application.Features.Users.Commands.DeleteUser;
 using MyHealth.Application.Features.Users.Commands.UpdateUser;
+using MyHealth.Application.Features.Users.Queries.GetAllUsers;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -21,11 +22,9 @@ public class UserController : ControllerBase
         this.mediator = mediator;
     }
 
-    [HttpGet]
-    public IEnumerable<string> GetUsers()
-    {
-        return new string[] { "value1", "value2" };
-    }
+    [HttpGet( "GetAllUsers")]
+    public async Task<List<GetAllUsersViewModel>> GetAllUsers()
+    => await mediator.Send(new GetAllUsersQuery());
 
     [HttpGet("{id}")]
     public string Get(int id)

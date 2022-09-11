@@ -8,6 +8,6 @@ public class GetDieaseDetailByDieaseIdViewModel
     public Guid PatientId { get; set; }
     public string? Name { get; set; }
     public string? Discription { get; set; }
-    public IEnumerable<Picture>? AnalysisPicture { get; set; }
+    public ICollection<Picture>? AnalysisPicture { get; set; }
     public UserPersonalInfoDTO? Doctor { get; set; }
 }

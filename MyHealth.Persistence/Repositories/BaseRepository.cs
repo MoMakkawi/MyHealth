@@ -38,7 +38,7 @@ namespace MyHealth.Persistence.Repositories
         public async Task DeleteAsync(Guid id)
         {
             var entity = await _dbContext.Set<T>().FindAsync(id);
-            _dbContext.Set<T>().Remove(entity);
+            _dbContext.Set<T>().Remove(entity!);
 
             await _dbContext.SaveChangesAsync();
 
