@@ -39,7 +39,11 @@ public class UserRepository : IAsyncUserRepository
 
     public async Task<ApplicationUserDTO> GetByIdAsync(string id)
     {
-        var user = await _dbContext.Users.FindAsync(id);
+        var user = await _dbContext
+            .Users
+            .Include(u=>u.ProfilePicture)
+            .SingleOrDefaultAsync(u=>u.Id == id);
+
         if (user is not null) return mapper.Map<ApplicationUserDTO>(user);
         else throw new NullReferenceException();
     }

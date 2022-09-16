@@ -6,6 +6,7 @@ using MyHealth.Application.Features.Users.Commands.CreateUser;
 using MyHealth.Application.Features.Users.Commands.DeleteUser;
 using MyHealth.Application.Features.Users.Commands.UpdateUser;
 using MyHealth.Application.Features.Users.Queries.GetAllUsers;
+using MyHealth.Application.Features.Users.Queries.GetUserById;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -27,10 +28,9 @@ public class UserController : ControllerBase
     => await mediator.Send(new GetAllUsersQuery());
 
     [HttpGet("{id}")]
-    public string Get(int id)
-    {
-        return "value";
-    }
+    public async Task<GetUserByIdViewModel> Get(Guid id)
+        => await mediator.Send(new GetUserByIdQuery { UserId = id });
+    
 
     [HttpPost]
     public async Task<Guid> Post([FromBody] CreateUserCommand createUser)
