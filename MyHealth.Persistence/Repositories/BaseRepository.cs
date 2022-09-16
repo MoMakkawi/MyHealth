@@ -13,7 +13,7 @@ namespace MyHealth.Persistence.Repositories
             _dbContext = dbContext;
         }
 
-        public async Task<T> GetByIdAsync(string id)
+        public async Task<T> GetByIdAsync(dynamic id)
         {
             var entity = await _dbContext.Set<T>().FindAsync(id);
             if (entity is not null) return entity;

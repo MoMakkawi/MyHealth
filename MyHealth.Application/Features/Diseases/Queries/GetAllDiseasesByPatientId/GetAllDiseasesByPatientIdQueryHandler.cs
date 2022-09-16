@@ -18,7 +18,7 @@ public class GetAllDiseasesByPatientIdQueryHandler
 
     public async Task<List<GetAllDiseasesByPatientIdViewModel>> Handle(GetAllDiseasesByPatientIdQuery request, CancellationToken cancellationToken)
     {
-        var allDiseasesByPatieantId = await repository.GetAllByPatieantIdAsync(request.PatientId);
+        var allDiseasesByPatieantId = await repository.GetAllByPatieantIdAsync(request.PatientId!);
         return mapper.Map <List<GetAllDiseasesByPatientIdViewModel>>(allDiseasesByPatieantId);
     }
 }

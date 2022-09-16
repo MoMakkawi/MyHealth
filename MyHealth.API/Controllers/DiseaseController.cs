@@ -32,7 +32,7 @@ namespace MyHealth.API.Controllers
         [HttpGet("GetDieaseDetailByDieaseId/{dieaseId}", Name = "GetDieaseDetailByDieaseId")]
         public async Task<ActionResult<GetDieaseDetailByDieaseIdViewModel>> GetDieaseDetailByDieaseId(string dieaseId)
         {
-            var disease = await mediator.Send(new GetDieaseDetailByDieaseIdQuery() { DieaseId = dieaseId });
+            var disease = await mediator.Send(new GetDieaseDetailByDieaseIdQuery() { DieaseId = new Guid(dieaseId) });
             return Ok(disease);
         }
 

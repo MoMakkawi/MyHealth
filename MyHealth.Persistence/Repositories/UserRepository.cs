@@ -37,12 +37,14 @@ public class UserRepository : IAsyncUserRepository
         await _dbContext.SaveChangesAsync();
     }
 
-    public async Task<ApplicationUserDTO> GetByIdAsync(string id)
+    public async Task<ApplicationUserDTO> GetByIdAsync(dynamic id)
     {
+        string Id = Convert.ToString(id);
+
         var user = await _dbContext
             .Users
             .Include(u=>u.ProfilePicture)
-            .SingleOrDefaultAsync(u=>u.Id == id);
+            .SingleOrDefaultAsync(u=>u.Id == Id);
 
         if (user is not null) return mapper.Map<ApplicationUserDTO>(user);
         else throw new NullReferenceException();
