@@ -4,6 +4,7 @@ using AutoMapper;
 using MyHealth.Application.Features.Diseases.Commands.CreateDisease;
 using MyHealth.Application.Features.Diseases.Commands.DeleteDisease;
 using MyHealth.Application.Features.Diseases.Commands.UpdateDiseases;
+using MyHealth.Application.Features.Diseases.Queries.GetAllDiseasesByPatientId;
 using MyHealth.Application.Features.Diseases.Queries.GetDieaseDetailByDieaseId;
 using MyHealth.Application.Features.DrRequests.Commands.ChangeDrRequestStatus;
 using MyHealth.Application.Features.DrRequests.Commands.DeleteDrRequest;
@@ -32,8 +33,12 @@ public class AutoMapperProfile : Profile
         CreateMap<Disease, DeleteDiseaseCommand>().ReverseMap();
         CreateMap<Disease, GetDieaseDetailByDieaseIdViewModel>()
             .ForMember(dest => dest.Doctor, opt => opt.Ignore())
+            .ReverseMap(); 
+        CreateMap<Disease, GetAllDiseasesByPatientIdViewModel>()
+            .ForMember(dest => dest.Doctor, opt => opt.Ignore())
             .ReverseMap();
-            
+
+
 
         CreateMap<Disease, GetAllDrRequestsByDrIdViewModel>().ReverseMap();
         CreateMap<Disease, GetAllDrRequestsByPatientIdViewModel>().ReverseMap();

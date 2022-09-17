@@ -14,7 +14,7 @@ public class ApplicationUser : IdentityUser
     public string? FirstName { get; set; }
     [Required, MaxLength(100)]
     public string? LastName { get; set; }
-    public Picture? ProfilePicture { get; set; }
+    public virtual Picture? ProfilePicture { get; set; }
     public Gender Gender { get; set; }
 }
 public enum Gender
