@@ -12,14 +12,18 @@ namespace MyHealth.Persistence.Repositories
         {
         }
 
-        public async Task<List<DrRequest>> GetAllByDrIdAsync(string drId)
+        public async Task<List<DrRequest>> GetAllByDrIdAsync(Guid drId)
         {
-            return await _dbContext.DrRequests.Where(r => r.DrId == drId).ToListAsync();
+            return await _dbContext.DrRequests
+                .Where(r => r.DrId == drId.ToString())
+                .ToListAsync();
         }
 
-        public async Task<List<DrRequest>> GetAllByPatieantIdAsync(string patieantId)
+        public async Task<List<DrRequest>> GetAllByPatientIdAsync(Guid patientId)
         {
-            return await _dbContext.DrRequests.Where(r => r.PatientId == patieantId).ToListAsync();
+            return await _dbContext.DrRequests
+                .Where(r => r.PatientId == patientId.ToString())
+                .ToListAsync();
         }
     }
 }

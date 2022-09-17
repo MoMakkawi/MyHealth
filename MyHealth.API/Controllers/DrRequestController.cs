@@ -22,36 +22,36 @@ namespace MyHealth.API.Controllers
             this.mediator = mediator;
         }
 
-        [HttpGet("GetAllDrRequestsByDrId/{drId}", Name = "GetAllDrRequestsByDrId")]
-        public async Task<ActionResult<List<GetAllDrRequestsByDrIdViewModel>>> GetAllDrRequestsByDrId(string drId)
+        [HttpGet("DrReqDrId/{drId}")]
+        public async Task<ActionResult<List<GetAllDrRequestsByDrIdViewModel>>> GetAllDrRequestsByDrId(Guid drId)
         {
             var diseases = await mediator.Send(new GetAllDrRequestsByDrIdQuery() { DrId = drId });
             return Ok(diseases);
         }
 
-        [HttpGet("GetAllDrRequestsByPatientId/{PatientId}", Name = "GetAllDrRequestsByPatientId")]
+        [HttpGet("DrReqPatId/{patientId}")]
         public async Task<ActionResult<List<GetAllDrRequestsByPatientIdViewModel>>> GetAllDrRequestsByPatientId(Guid patientId)
         {
             var diseases = await mediator.Send(new GetAllDrRequestsByPatientIdQuery() { PatientId = patientId });
             return Ok(diseases);
         }
 
-        [HttpPost(Name = "AddDrRequest")]
+        [HttpPost(Name = "AddDrReq")]
         public async Task<ActionResult<Guid>> Create([FromBody] CreateDrRequestCommand createDrRequestCommand)
         {
             Guid id = await mediator.Send(createDrRequestCommand);
             return Ok(id);
         }
 
-        [HttpDelete("DeleteDrRequestByDrRequestId/{id}", Name = "DeleteDrRequest")]
+        [HttpDelete("DelDrReqByDrReqId/{id}")]
         public async Task<ActionResult> Delete(Guid id)
         {
-            var deleteDrRequestCommand = new DeleteDrRequestCommand() { DrRequestId = id };
+            var deleteDrRequestCommand = new DeleteDrRequestCommand() { Id = id };
             await mediator.Send(deleteDrRequestCommand);
             return NoContent();
         }
 
-        [HttpPut(Name = "UpdateDrRequestStatus")]
+        [HttpPut( "UpdateDrReqStatus")]
         public async Task<ActionResult> Update([FromBody] UpdateDrRequestStatusCommand updateDrRequestStatusCommand)
         {
             await mediator.Send(updateDrRequestStatusCommand);

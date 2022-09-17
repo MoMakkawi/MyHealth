@@ -4,5 +4,5 @@ namespace MyHealth.Application.Features.DrRequests.Commands.DeleteDrRequest;
 
 public class DeleteDrRequestCommand : IRequest
 {
-    public Guid DrRequestId { get; set; }
+    public Guid Id { get; set; }
 }

@@ -6,7 +6,6 @@ using MyHealth.Application.Features.Diseases.Commands.DeleteDisease;
 using MyHealth.Application.Features.Diseases.Commands.UpdateDiseases;
 using MyHealth.Application.Features.Diseases.Queries.GetAllDiseasesByPatientId;
 using MyHealth.Application.Features.Diseases.Queries.GetDieaseDetailByDieaseId;
-using MyHealth.Application.Features.DrRequests.Commands.ChangeDrRequestStatus;
 using MyHealth.Application.Features.DrRequests.Commands.DeleteDrRequest;
 using MyHealth.Application.Features.DrRequests.Commands.SendDrRequestToPatient;
 using MyHealth.Application.Features.DrRequests.Queries.GetAllDrRequestsByDrId;
@@ -38,14 +37,16 @@ public class AutoMapperProfile : Profile
             .ForMember(dest => dest.Doctor, opt => opt.Ignore())
             .ReverseMap();
 
-
-
-        CreateMap<Disease, GetAllDrRequestsByDrIdViewModel>().ReverseMap();
-        CreateMap<Disease, GetAllDrRequestsByPatientIdViewModel>().ReverseMap();
-
         CreateMap<DrRequest, CreateDrRequestCommand>().ReverseMap();
-        CreateMap<DrRequest, UpdateDrRequestStatusCommand>().ReverseMap();
         CreateMap<DrRequest, DeleteDrRequestCommand>().ReverseMap();
+        CreateMap<DrRequest, GetAllDrRequestsByDrIdViewModel>()
+            .ForMember(dest => dest.Doctor, opt => opt.Ignore())
+            .ReverseMap()
+            .ForMember(dest => dest.DrId, opt => opt.MapFrom(src => src.Doctor!.Id));
+        CreateMap<DrRequest, GetAllDrRequestsByPatientIdViewModel>()
+            .ForMember(dest => dest.Patient, opt => opt.Ignore())
+            .ReverseMap()
+            .ForMember(dest => dest.PatientId, opt => opt.MapFrom(src => src.Patient!.Id));
 
         CreateMap<ApplicationUserDTO, CreateUserCommand>().ReverseMap();
         CreateMap<ApplicationUserDTO, UpdateUserCommand>().ReverseMap();

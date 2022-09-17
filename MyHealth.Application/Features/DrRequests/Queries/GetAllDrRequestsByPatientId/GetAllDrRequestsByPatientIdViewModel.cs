@@ -4,7 +4,7 @@ using MyHealth.Domain.DTOs;
 namespace MyHealth.Application.Features.DrRequests.Queries.GetAllDrRequestsByPatientId;
 public class GetAllDrRequestsByPatientIdViewModel
 {
-    public UserPersonalInfoDTO? Patieant { get; set; }
+    public UserPersonalInfoDTO? Patient { get; set; }
     public DateTime RequestTime { get; set; }
     public DrRequestStatus Status { get; set; }
 }

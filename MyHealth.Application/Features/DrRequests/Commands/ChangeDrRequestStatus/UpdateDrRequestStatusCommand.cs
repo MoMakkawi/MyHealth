@@ -6,9 +6,6 @@ namespace MyHealth.Application.Features.DrRequests.Commands.ChangeDrRequestStatu
 
 public class UpdateDrRequestStatusCommand : IRequest
 {
-    public Guid DrRequestId { get; set; }
-    public Guid DrId { get; set; }
-    public Guid PatientId { get; set; }
-    public DateTime RequestTime { get; set; }
+    public Guid Id { get; set; }
     public DrRequestStatus Status { get; set; }
 }

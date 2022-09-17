@@ -16,7 +16,7 @@ public class DeleteDrRequestCommandHandler : IRequestHandler<DeleteDrRequestComm
 
     public async Task<Unit> Handle(DeleteDrRequestCommand request, CancellationToken cancellationToken)
     {
-        await repository.DeleteAsync(request.DrRequestId);
+        await repository.DeleteAsync(request.Id);
         return Unit.Value;
     }
 }

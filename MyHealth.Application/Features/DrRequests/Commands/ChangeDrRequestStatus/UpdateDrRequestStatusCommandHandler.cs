@@ -10,18 +10,18 @@ namespace MyHealth.Application.Features.DrRequests.Commands.ChangeDrRequestStatu
 public class UpdateDrRequestStatusCommandHandler : IRequestHandler<UpdateDrRequestStatusCommand>
 {
     private readonly IAsyncDrRequestRepository repository;
-    private readonly IMapper mapper;
 
     public UpdateDrRequestStatusCommandHandler(IAsyncDrRequestRepository repository , IMapper mapper)
     {
         this.repository = repository;
-        this.mapper = mapper;   
     }
 
     public async Task<Unit> Handle(UpdateDrRequestStatusCommand request, CancellationToken cancellationToken)
 {
-        DrRequest drRequest = mapper.Map<DrRequest>(request);
-        await repository.UpdateAsync(drRequest);
+        DrRequest newDrRequest = await repository.GetByIdAsync(request.Id);
+        newDrRequest.Status = request.Status;
+
+        await repository.UpdateAsync(newDrRequest);
 
         return Unit.Value;
     }
