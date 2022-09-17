@@ -11,7 +11,7 @@ public class ApplicationUserDTO
     public string? PhoneNumber { get; set; }
     public string? Email { get; set; } 
     public string? Password { get; set; }
-    public Picture? ProfilePicture { get; set; }
+    public virtual Picture? ProfilePicture { get; set; }
     public Gender Gender { get; set; }
 }
 public enum Gender

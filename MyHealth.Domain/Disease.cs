@@ -8,5 +8,5 @@ public class Disease
     public string? Name { get; set; }
     public string? Discription { get; set; }
     public DateTime DiagnosisDate { get; set; }
-    public ICollection<Picture?>? AnalysisPictures { get; set; }
+    public virtual ICollection<Picture?>? AnalysisPictures { get; set; }
 }
