@@ -4,5 +4,5 @@ namespace MyHealth.Application.Features.DrRequests.Queries.GetAllDrRequestsByPat
 
 public class GetAllDrRequestsByPatientIdQuery : IRequest<IEnumerable<GetAllDrRequestsByPatientIdViewModel>>
 {
-    public string PatientId { get; set; }
+    public Guid PatientId { get; set; }
 }

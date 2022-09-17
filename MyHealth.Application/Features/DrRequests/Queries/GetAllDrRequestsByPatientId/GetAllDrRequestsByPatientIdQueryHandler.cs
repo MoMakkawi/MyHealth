@@ -19,7 +19,7 @@ public class GetAllDrRequestsByPatientIdQueryHandler
 
     public async Task<IEnumerable<GetAllDrRequestsByPatientIdViewModel>> Handle(GetAllDrRequestsByPatientIdQuery request, CancellationToken cancellationToken)
     {
-        var allDiseasesByPatieantId = await repository.GetAllByPatieantIdAsync(request.PatientId);
+        var allDiseasesByPatieantId = await repository.GetAllByPatieantIdAsync(request.PatientId.ToString());
         return mapper.Map<IEnumerable<GetAllDrRequestsByPatientIdViewModel>>(allDiseasesByPatieantId);
     }
 }

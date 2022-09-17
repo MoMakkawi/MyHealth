@@ -17,7 +17,7 @@ public class GetAllDrRequestsByDrIdQueryHandler
 
     public async Task<List<GetAllDrRequestsByDrIdViewModel>> Handle(GetAllDrRequestsByDrIdQuery request, CancellationToken cancellationToken)
     {
-        var allDiseasesByPatieantId = await repository.GetAllByDrIdAsync(request.DrId);
+        var allDiseasesByPatieantId = await repository.GetAllByDrIdAsync(request.DrId!);
         return mapper.Map<List<GetAllDrRequestsByDrIdViewModel>>(allDiseasesByPatieantId);
     }
 }

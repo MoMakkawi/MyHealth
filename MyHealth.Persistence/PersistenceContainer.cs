@@ -13,7 +13,8 @@ public static class PersistenceContainer
     {
 
         services.AddDbContext<ApplicationDbContext>(options =>
-            options.UseSqlServer(configuration.GetConnectionString("MyHealthContext") ?? throw new InvalidOperationException("Connection string 'MyHealthAPIContext' not found.")));
+            options.UseLazyLoadingProxies()
+            .UseSqlServer(configuration.GetConnectionString("MyHealthContext") ?? throw new InvalidOperationException("Connection string 'MyHealthAPIContext' not found.")));
 
 
         services.AddScoped(typeof(IAsyncRepository<>), typeof(BaseRepository<>));
