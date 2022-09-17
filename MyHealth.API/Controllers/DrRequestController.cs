@@ -43,7 +43,7 @@ namespace MyHealth.API.Controllers
             return Ok(id);
         }
 
-        [HttpDelete("DelDrReqByDrReqId/{id}")]
+        [HttpDelete("DelDrReq/{id}")]
         public async Task<ActionResult> Delete(Guid id)
         {
             var deleteDrRequestCommand = new DeleteDrRequestCommand() { Id = id };

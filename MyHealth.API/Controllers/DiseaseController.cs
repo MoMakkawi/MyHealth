@@ -1,8 +1,5 @@
 ﻿using MediatR;
-
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-
 using MyHealth.Application.Features.Diseases.Commands.CreateDisease;
 using MyHealth.Application.Features.Diseases.Commands.DeleteDisease;
 using MyHealth.Application.Features.Diseases.Commands.UpdateDiseases;
@@ -22,28 +19,28 @@ namespace MyHealth.API.Controllers
             this.mediator = mediator;
         }
 
-        [HttpGet("GetAllDiseasesByPatientId/{PatientId}", Name = "GetAllDiseasesByPatientId")]
-        public async Task<ActionResult<List<GetAllDiseasesByPatientIdViewModel>>> GetAllDiseasesByPatientId(string PatientId)
+        [HttpGet("DiseasesPatient/{patientId}")]
+        public async Task<ActionResult<List<GetAllDiseasesByPatientIdViewModel>>> GetAllDiseasesByPatientId(string patientId)
         {
-            var diseases = await mediator.Send(new GetAllDiseasesByPatientIdQuery() { PatientId = PatientId });
+            var diseases = await mediator.Send(new GetAllDiseasesByPatientIdQuery() { PatientId = patientId });
             return Ok(diseases);
         }
 
-        [HttpGet("GetDieaseDetailByDieaseId/{dieaseId}", Name = "GetDieaseDetailByDieaseId")]
+        [HttpGet("DiseaseDetails/{dieaseId}")]
         public async Task<ActionResult<GetDieaseDetailByDieaseIdViewModel>> GetDieaseDetailByDieaseId(string dieaseId)
         {
             var disease = await mediator.Send(new GetDieaseDetailByDieaseIdQuery() { DieaseId = new Guid(dieaseId) });
             return Ok(disease);
         }
 
-        [HttpPost(Name = "AddDiease")]
+        [HttpPost( "AddDiease")]
         public async Task<ActionResult<Guid>> Create([FromBody] CreateDiseaseCommand createDiseaseCommand)
         {
             Guid id = await mediator.Send(createDiseaseCommand);
             return Ok(id);
         }
 
-        [HttpDelete("DeleteDiseaseByDiseaseId/{id}", Name = "DeleteDiease")]
+        [HttpDelete("DeleteDisease/{id}")]
         public async Task<ActionResult> Delete(Guid id)
         {
             var deleteDiseaseCommand = new DeleteDiseaseCommand() { DiseaseId = id };
@@ -51,7 +48,7 @@ namespace MyHealth.API.Controllers
             return NoContent();
         }
 
-        [HttpPut(Name = "UpdateDiease")]
+        [HttpPut( "UpdateDiease")]
         public async Task<ActionResult> Update([FromBody] UpdateDiseasesCommand updateDiseasesCommand)
         {
             await mediator.Send(updateDiseasesCommand);

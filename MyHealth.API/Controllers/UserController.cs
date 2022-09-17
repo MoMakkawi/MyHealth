@@ -23,30 +23,30 @@ public class UserController : ControllerBase
         this.mediator = mediator;
     }
 
-    [HttpGet( "GetAllUsers")]
+    [HttpGet( "GetUsers")]
     public async Task<List<GetAllUsersViewModel>> GetAllUsers()
     => await mediator.Send(new GetAllUsersQuery());
 
-    [HttpGet("{id}")]
+    [HttpGet("User/{id}")]
     public async Task<GetUserByIdViewModel> Get(Guid id)
-        => await mediator.Send(new GetUserByIdQuery { UserId = id });
+    => await mediator.Send(new GetUserByIdQuery { UserId = id });
     
 
-    [HttpPost]
+    [HttpPost("AddUser")]
     public async Task<Guid> Post([FromBody] CreateUserCommand createUser)
     {
         var id = await mediator.Send(createUser);
         return id;
     }
 
-    [HttpPut]
+    [HttpPut("UpdateUser")]
     public async Task<ActionResult> Put([FromBody] UpdateUserCommand updateUser)
     {
         await mediator.Send(updateUser);
         return Ok();
     }
 
-    [HttpDelete("Delete/{id}")]
+    [HttpDelete("DelUser/{id}")]
     public async Task<ActionResult> DeleteUser(Guid id)
     {
         await mediator.Send(new DeleteUserCommand() { userId = id });
