@@ -4,11 +4,12 @@ using MediatR;
 
 using MyHealth.Application.Contracts;
 using MyHealth.Domain.DTOs;
+using MyHealth.Domain.Helpers;
 
 namespace MyHealth.Application.Features.Users.Commands.CreateUser;
 
 public class CreateUserCommandHandler
-    : IRequestHandler<CreateUserCommand, Guid>
+    : IRequestHandler<CreateUserCommand, AuthModel>
 {
     private readonly IAsyncUserRepository userRepository;
     private readonly IMapper mapper;
@@ -18,11 +19,9 @@ public class CreateUserCommandHandler
         this.mapper = mapper;
     }
 
-    public async Task<Guid> Handle(CreateUserCommand request, CancellationToken cancellationToken)
+    public async Task<AuthModel> Handle(CreateUserCommand request, CancellationToken cancellationToken)
     {
         var appUserDTO = mapper.Map<ApplicationUserDTO>(request);
-        var user = await userRepository.AddAsync(appUserDTO);
-
-        return user.Id;
+        return await userRepository.AddAsync(appUserDTO);
     }
 }

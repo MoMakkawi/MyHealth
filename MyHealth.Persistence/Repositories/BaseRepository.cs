@@ -21,7 +21,7 @@ namespace MyHealth.Persistence.Repositories
         }
 
 
-        public async Task<T> AddAsync(T entity)
+        public async Task<dynamic> AddAsync(T entity)
         {
             await _dbContext.Set<T>().AddAsync(entity);
             await _dbContext.SaveChangesAsync();

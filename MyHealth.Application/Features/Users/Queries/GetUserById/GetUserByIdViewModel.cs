@@ -13,4 +13,5 @@ public class GetUserByIdViewModel
     public string? Email { get; set; }
     public Picture? ProfilePicture { get; set; }
     public Gender Gender { get; set; }
+    public string? Role { get; set; }
 }

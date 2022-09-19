@@ -1,6 +1,8 @@
 using MyHealth.Persistence;
 using MyHealth.Application;
 using System.Text.Json.Serialization;
+using MyHealth.Persistence.Identity;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +11,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 // Add services to the container.
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+    .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddPersistenceServices(builder.Configuration);
 builder.Services.AddApplicationServices();
 
