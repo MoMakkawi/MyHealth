@@ -45,7 +45,10 @@ public class UserRepository : IAsyncUserRepository
 
         var assignUserToRoleResult = await AssignUserToRole(user, userDTO.Role!);
         if (!assignUserToRoleResult.IsAuthenticated)
+        {
+            await _userManager.DeleteAsync(user);
             return new AuthModel { Message = assignUserToRoleResult.Message };
+        }
         
         user = await _userManager.Users.FirstAsync(u => u.Email == userDTO.Email);
         return new AuthModel
