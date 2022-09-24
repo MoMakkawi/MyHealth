@@ -6,7 +6,7 @@ using MyHealth.Domain;
 
 namespace MyHealth.Application.Features.Diseases.Commands.UpdateDiseases;
 
-public class UpdateDiseasesHandler:IRequestHandler<UpdateDiseasesCommand>
+public class UpdateDiseasesHandler : IRequestHandler<UpdateDiseasesCommand>
 {
     private readonly IAsyncDiseaseRepository diseaseRepository;
     private readonly IMapper mapper;

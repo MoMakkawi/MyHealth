@@ -6,13 +6,13 @@ using MyHealth.Application.Contracts;
 
 namespace MyHealth.Application.Features.Users.Queries.GetAllUsers
 {
-    public class GetAllUsersQueryHandler 
-        : IRequestHandler<GetAllUsersQuery,List<GetAllUsersViewModel>>
+    public class GetAllUsersQueryHandler
+        : IRequestHandler<GetAllUsersQuery, List<GetAllUsersViewModel>>
     {
         private readonly IAsyncUserRepository userRepository;
         private readonly IMapper mapper;
 
-        public GetAllUsersQueryHandler(IAsyncUserRepository userRepository , IMapper mapper)
+        public GetAllUsersQueryHandler(IAsyncUserRepository userRepository, IMapper mapper)
         {
             this.userRepository = userRepository;
             this.mapper = mapper;
@@ -22,9 +22,7 @@ namespace MyHealth.Application.Features.Users.Queries.GetAllUsers
         {
             var userDTOs = await userRepository.GetAllApplicationUsersDTOs();
 
-            return mapper.Map<List<GetAllUsersViewModel>>(userDTOs); 
+            return mapper.Map<List<GetAllUsersViewModel>>(userDTOs);
         }
-            
-        
     }
 }

@@ -1,5 +1,4 @@
-﻿
-using AutoMapper;
+﻿using AutoMapper;
 
 using MyHealth.Application.Features.Diseases.Commands.CreateDisease;
 using MyHealth.Application.Features.Diseases.Commands.DeleteDisease;
@@ -17,7 +16,6 @@ using MyHealth.Application.Features.Users.Queries.GetUserById;
 using MyHealth.Domain;
 using MyHealth.Domain.DTOs;
 
-
 namespace MyHealth.Application.Profiles;
 
 public class AutoMapperProfile : Profile
@@ -25,14 +23,14 @@ public class AutoMapperProfile : Profile
     public AutoMapperProfile()
     {
         CreateMap<Disease, CreateDiseaseCommand>()
-            .ForMember(dest => dest.DrId , opt => opt.MapFrom(src => new Guid(src.DrId!)))
+            .ForMember(dest => dest.DrId, opt => opt.MapFrom(src => new Guid(src.DrId!)))
             .ForMember(dest => dest.PatientId, opt => opt.MapFrom(src => new Guid(src.PatientId!)))
             .ReverseMap();
         CreateMap<Disease, UpdateDiseasesCommand>().ReverseMap();
         CreateMap<Disease, DeleteDiseaseCommand>().ReverseMap();
         CreateMap<Disease, GetDieaseDetailByDieaseIdViewModel>()
             .ForMember(dest => dest.Doctor, opt => opt.Ignore())
-            .ReverseMap(); 
+            .ReverseMap();
         CreateMap<Disease, GetAllDiseasesByPatientIdViewModel>()
             .ForMember(dest => dest.Doctor, opt => opt.Ignore())
             .ReverseMap();
@@ -55,6 +53,6 @@ public class AutoMapperProfile : Profile
         CreateMap<ApplicationUserDTO, GetUserByIdViewModel>()
             .ReverseMap();
 
-        CreateMap<ApplicationUserDTO,UserPersonalInfoDTO>();
+        CreateMap<ApplicationUserDTO, UserPersonalInfoDTO>();
     }
 }

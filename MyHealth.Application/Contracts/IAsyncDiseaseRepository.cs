@@ -2,7 +2,7 @@
 
 namespace MyHealth.Application.Contracts;
 
-public interface IAsyncDiseaseRepository : IAsyncRepository<Disease> 
+public interface IAsyncDiseaseRepository : IAsyncRepository<Disease>
 {
     Task<List<Disease>> GetAllByPatieantIdAsync(string patieantId);
 }

@@ -9,19 +9,17 @@ namespace MyHealth.Persistence;
 
 public static class PersistenceContainer
 {
-    public static IServiceCollection AddPersistenceServices(this IServiceCollection services ,IConfiguration configuration)
+    public static IServiceCollection AddPersistenceServices(this IServiceCollection services, IConfiguration configuration)
     {
-
         services.AddDbContext<ApplicationDbContext>(options =>
             options.UseLazyLoadingProxies()
             .UseSqlServer(configuration.GetConnectionString("MyHealthContext") ?? throw new InvalidOperationException("Connection string 'MyHealthAPIContext' not found.")));
-
 
         services.AddScoped(typeof(IAsyncRepository<>), typeof(BaseRepository<>));
 
         services.AddScoped(typeof(IAsyncDiseaseRepository), typeof(DiseaseRepository));
         services.AddScoped(typeof(IAsyncDrRequestRepository), typeof(DrRequestRepository));
-        services.AddScoped(typeof(IAsyncUserRepository),typeof(UserRepository));
+        services.AddScoped(typeof(IAsyncUserRepository), typeof(UserRepository));
 
         return services;
     }

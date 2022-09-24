@@ -14,4 +14,3 @@ public class GetAllUsersViewModel
     public Picture? ProfilePicture { get; set; }
     public Gender Gender { get; set; }
 }
-

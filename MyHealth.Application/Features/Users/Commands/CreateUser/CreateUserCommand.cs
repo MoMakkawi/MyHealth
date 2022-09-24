@@ -5,6 +5,7 @@ using MyHealth.Domain.DTOs;
 using MyHealth.Domain.Helpers;
 
 namespace MyHealth.Application.Features.Users.Commands.CreateUser;
+
 public class CreateUserCommand : IRequest<AuthModel>
 {
     public string? FirstName { get; set; }

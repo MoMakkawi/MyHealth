@@ -1,11 +1,10 @@
-using MyHealth.Persistence;
-using MyHealth.Application;
-using System.Text.Json.Serialization;
-using MyHealth.Persistence.Identity;
 using Microsoft.AspNetCore.Identity;
+using MyHealth.Application;
+using MyHealth.Persistence;
+using MyHealth.Persistence.Identity;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
-
 
 // Add services to the container.
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
@@ -22,8 +21,6 @@ builder.Services.AddControllers()
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -35,7 +32,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 
 app.UseRouting();
 

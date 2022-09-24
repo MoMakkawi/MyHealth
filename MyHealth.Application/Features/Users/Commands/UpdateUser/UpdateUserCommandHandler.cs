@@ -12,7 +12,7 @@ public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand>
     private readonly IAsyncUserRepository userRepository;
     private readonly IMapper mapper;
 
-    public UpdateUserCommandHandler(IAsyncUserRepository userRepository , IMapper mapper)
+    public UpdateUserCommandHandler(IAsyncUserRepository userRepository, IMapper mapper)
     {
         this.userRepository = userRepository;
         this.mapper = mapper;

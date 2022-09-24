@@ -5,10 +5,9 @@ using MyHealth.Domain;
 
 namespace MyHealth.Persistence.Repositories;
 
-
 public class DiseaseRepository : BaseRepository<Disease>, IAsyncDiseaseRepository
 {
-    public DiseaseRepository(ApplicationDbContext dbContext) 
+    public DiseaseRepository(ApplicationDbContext dbContext)
         : base(dbContext)
     {
     }

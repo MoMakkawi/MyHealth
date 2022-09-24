@@ -19,12 +19,11 @@ public partial class SeedRoles : Migration
                 table: "AspNetRoles",
                 columns: new[] { "Id", "Name", "NormalizedName", "ConcurrencyStamp" },
                 values: new object[] { Role.DoctorId, Role.Doctor, Role.Doctor.ToUpper(), Role.DoctorConcurrencyStamp });
-       
+
         migrationBuilder.InsertData(
            table: "AspNetRoles",
            columns: new[] { "Id", "Name", "NormalizedName", "ConcurrencyStamp" },
-           values: new object[] { Role.PatientId , Role.Patient, Role.Patient.ToUpper(), Role.PatientConcurrencyStamp });
-      
+           values: new object[] { Role.PatientId, Role.Patient, Role.Patient.ToUpper(), Role.PatientConcurrencyStamp });
     }
 
     protected override void Down(MigrationBuilder migrationBuilder)

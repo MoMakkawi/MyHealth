@@ -4,6 +4,7 @@ using MyHealth.Application.Contracts;
 using MyHealth.Domain.DTOs;
 
 namespace MyHealth.Application.Features.DrRequests.Queries.GetAllDrRequestsByDrId;
+
 public class GetAllDrRequestsByDrIdQueryHandler
     : IRequestHandler<GetAllDrRequestsByDrIdQuery, List<GetAllDrRequestsByDrIdViewModel>>
 {
@@ -11,7 +12,7 @@ public class GetAllDrRequestsByDrIdQueryHandler
     private readonly IMapper mapper;
     private readonly IAsyncUserRepository userRepository;
 
-    public GetAllDrRequestsByDrIdQueryHandler(IAsyncDrRequestRepository repository, IMapper mapper , IAsyncUserRepository userRepository)
+    public GetAllDrRequestsByDrIdQueryHandler(IAsyncDrRequestRepository repository, IMapper mapper, IAsyncUserRepository userRepository)
     {
         this.repository = repository;
         this.mapper = mapper;

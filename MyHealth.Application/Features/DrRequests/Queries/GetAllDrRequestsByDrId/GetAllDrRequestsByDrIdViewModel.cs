@@ -2,6 +2,7 @@
 using MyHealth.Domain.DTOs;
 
 namespace MyHealth.Application.Features.DrRequests.Queries.GetAllDrRequestsByDrId;
+
 public class GetAllDrRequestsByDrIdViewModel
 {
     public UserPersonalInfoDTO? Doctor { get; set; }

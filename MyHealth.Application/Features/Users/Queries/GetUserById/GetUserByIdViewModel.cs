@@ -1,5 +1,5 @@
-﻿using MyHealth.Domain.DTOs;
-using MyHealth.Domain;
+﻿using MyHealth.Domain;
+using MyHealth.Domain.DTOs;
 
 namespace MyHealth.Application.Features.Users.Queries.GetUserById;
 

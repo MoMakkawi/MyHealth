@@ -2,6 +2,7 @@
 using MyHealth.Domain.DTOs;
 
 namespace MyHealth.Application.Features.Diseases.Queries.GetDieaseDetailByDieaseId;
+
 public class GetDieaseDetailByDieaseIdViewModel
 {
     public Guid Id { get; set; }

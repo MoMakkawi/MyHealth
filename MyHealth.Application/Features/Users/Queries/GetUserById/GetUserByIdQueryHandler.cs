@@ -15,6 +15,7 @@ namespace MyHealth.Application.Features.Users.Queries.GetUserById
             this.userRepository = userRepository;
             this.mapper = mapper;
         }
+
         public async Task<GetUserByIdViewModel> Handle(GetUserByIdQuery request, CancellationToken cancellationToken)
         {
             var user = await userRepository.GetByIdAsync(request.UserId);

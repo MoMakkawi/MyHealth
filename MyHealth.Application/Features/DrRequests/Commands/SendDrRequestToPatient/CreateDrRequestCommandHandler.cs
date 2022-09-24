@@ -4,10 +4,9 @@ using MyHealth.Application.Contracts;
 
 using MyHealth.Domain;
 
-
 namespace MyHealth.Application.Features.DrRequests.Commands.SendDrRequestToPatient
 {
-    public class CreateDrRequestCommandHandler : IRequestHandler<CreateDrRequestCommand , Guid>
+    public class CreateDrRequestCommandHandler : IRequestHandler<CreateDrRequestCommand, Guid>
     {
         private readonly IAsyncDrRequestRepository repository;
         private readonly IMapper mapper;
@@ -25,7 +24,6 @@ namespace MyHealth.Application.Features.DrRequests.Commands.SendDrRequestToPatie
             drRequest = await repository.AddAsync(drRequest);
 
             return drRequest.Id;
-
         }
     }
 }

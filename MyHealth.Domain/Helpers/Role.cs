@@ -13,5 +13,4 @@ public static class Role
     public const string Doctor = nameof(Doctor);
     public const string DoctorId = "64410517-6b14-4833-886a-0f949e3c5955";
     public const string DoctorConcurrencyStamp = "93464eb3-c99b-4c63-9070-8d3b3fd14733";
-
 }

@@ -1,6 +1,4 @@
 ﻿using MediatR;
-
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 using MyHealth.Application.Features.DrRequests.Commands.ChangeDrRequestStatus;
@@ -51,7 +49,7 @@ namespace MyHealth.API.Controllers
             return NoContent();
         }
 
-        [HttpPut( "UpdateDrReqStatus")]
+        [HttpPut("UpdateDrReqStatus")]
         public async Task<ActionResult> Update([FromBody] UpdateDrRequestStatusCommand updateDrRequestStatusCommand)
         {
             await mediator.Send(updateDrRequestStatusCommand);

@@ -1,7 +1,6 @@
 ﻿using MediatR;
 
 using MyHealth.Application.Contracts;
-using MyHealth.Domain;
 
 namespace MyHealth.Application.Features.DrRequests.Commands.DeleteDrRequest;
 

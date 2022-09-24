@@ -7,12 +7,12 @@ using MyHealth.Domain;
 
 namespace MyHealth.Application.Features.Diseases.Commands.CreateDisease;
 
-public class CreateDiseaseCommandHandler : IRequestHandler<CreateDiseaseCommand , Guid>
+public class CreateDiseaseCommandHandler : IRequestHandler<CreateDiseaseCommand, Guid>
 {
     private readonly IAsyncDiseaseRepository diseaseRepository;
     private readonly IMapper mapper;
 
-    public CreateDiseaseCommandHandler(IAsyncDiseaseRepository diseaseRepository , IMapper mapper)
+    public CreateDiseaseCommandHandler(IAsyncDiseaseRepository diseaseRepository, IMapper mapper)
     {
         this.diseaseRepository = diseaseRepository;
         this.mapper = mapper;
@@ -27,6 +27,5 @@ public class CreateDiseaseCommandHandler : IRequestHandler<CreateDiseaseCommand 
         disease = await diseaseRepository.AddAsync(disease);
 
         return disease.Id;
-
     }
 }

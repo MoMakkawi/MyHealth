@@ -7,7 +7,7 @@ namespace MyHealth.Persistence.Repositories
 {
     public class DrRequestRepository : BaseRepository<DrRequest>, IAsyncDrRequestRepository
     {
-        public DrRequestRepository(ApplicationDbContext dbContext) 
+        public DrRequestRepository(ApplicationDbContext dbContext)
             : base(dbContext)
         {
         }

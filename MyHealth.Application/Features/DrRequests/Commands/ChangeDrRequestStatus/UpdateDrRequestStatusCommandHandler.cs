@@ -11,13 +11,13 @@ public class UpdateDrRequestStatusCommandHandler : IRequestHandler<UpdateDrReque
 {
     private readonly IAsyncDrRequestRepository repository;
 
-    public UpdateDrRequestStatusCommandHandler(IAsyncDrRequestRepository repository , IMapper mapper)
+    public UpdateDrRequestStatusCommandHandler(IAsyncDrRequestRepository repository, IMapper mapper)
     {
         this.repository = repository;
     }
 
     public async Task<Unit> Handle(UpdateDrRequestStatusCommand request, CancellationToken cancellationToken)
-{
+    {
         DrRequest newDrRequest = await repository.GetByIdAsync(request.Id);
         newDrRequest.Status = request.Status;
 

@@ -1,4 +1,5 @@
 ﻿namespace MyHealth.Domain;
+
 public class DrRequest
 {
     public Guid Id { get; set; }

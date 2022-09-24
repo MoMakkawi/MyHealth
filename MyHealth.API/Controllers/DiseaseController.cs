@@ -33,7 +33,7 @@ namespace MyHealth.API.Controllers
             return Ok(disease);
         }
 
-        [HttpPost( "AddDiease")]
+        [HttpPost("AddDiease")]
         public async Task<ActionResult<Guid>> Create([FromBody] CreateDiseaseCommand createDiseaseCommand)
         {
             Guid id = await mediator.Send(createDiseaseCommand);
@@ -48,7 +48,7 @@ namespace MyHealth.API.Controllers
             return NoContent();
         }
 
-        [HttpPut( "UpdateDiease")]
+        [HttpPut("UpdateDiease")]
         public async Task<ActionResult> Update([FromBody] UpdateDiseasesCommand updateDiseasesCommand)
         {
             await mediator.Send(updateDiseasesCommand);
@@ -56,4 +56,3 @@ namespace MyHealth.API.Controllers
         }
     }
 }
-

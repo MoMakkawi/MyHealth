@@ -12,7 +12,7 @@ public class GetAllDiseasesByPatientIdQueryHandler
     private readonly IMapper mapper;
     private readonly IAsyncUserRepository userRepository;
 
-    public GetAllDiseasesByPatientIdQueryHandler(IAsyncDiseaseRepository repository, IMapper mapper ,IAsyncUserRepository userRepository)
+    public GetAllDiseasesByPatientIdQueryHandler(IAsyncDiseaseRepository repository, IMapper mapper, IAsyncUserRepository userRepository)
     {
         this.repository = repository;
         this.mapper = mapper;

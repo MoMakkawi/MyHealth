@@ -20,7 +20,6 @@ namespace MyHealth.Persistence.Repositories
             else throw new NullReferenceException();
         }
 
-
         public async Task<dynamic> AddAsync(T entity)
         {
             await _dbContext.Set<T>().AddAsync(entity);
@@ -41,8 +40,6 @@ namespace MyHealth.Persistence.Repositories
             _dbContext.Set<T>().Remove(entity!);
 
             await _dbContext.SaveChangesAsync();
-
         }
     }
-
 }

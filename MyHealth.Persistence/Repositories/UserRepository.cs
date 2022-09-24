@@ -1,14 +1,11 @@
-﻿using System.Net.Mail;
-
-using AutoMapper;
-
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-
 using MyHealth.Application.Contracts;
 using MyHealth.Domain.DTOs;
 using MyHealth.Domain.Helpers;
 using MyHealth.Persistence.Identity;
+using System.Net.Mail;
 
 namespace MyHealth.Persistence.Repositories;
 
@@ -17,13 +14,13 @@ public class UserRepository : IAsyncUserRepository
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly RoleManager<IdentityRole> _roleManager;
     private readonly IMapper _mapper;
-    public UserRepository(IMapper mapper, UserManager<ApplicationUser> userManager , RoleManager<IdentityRole> roleManager)
+
+    public UserRepository(IMapper mapper, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
     {
         _userManager = userManager;
         _mapper = mapper;
         _roleManager = roleManager;
     }
-
 
     public async Task<dynamic> AddAsync(ApplicationUserDTO userDTO)
     {
@@ -36,7 +33,7 @@ public class UserRepository : IAsyncUserRepository
         if (await _userManager.FindByNameAsync(user.UserName) is not null)
             return new AuthModel { Message = "UserName is already registered!" };
 
-        var result = await _userManager.CreateAsync(user,userDTO.Password);
+        var result = await _userManager.CreateAsync(user, userDTO.Password);
         if (result.Succeeded is not true)
         {
             var errors = string.Join(",", result.Errors.Select(e => e.Code + " " + e.Description));
@@ -49,7 +46,7 @@ public class UserRepository : IAsyncUserRepository
             await _userManager.DeleteAsync(user);
             return new AuthModel { Message = assignUserToRoleResult.Message };
         }
-        
+
         user = await _userManager.Users.FirstAsync(u => u.Email == userDTO.Email);
         return new AuthModel
         {
@@ -59,7 +56,6 @@ public class UserRepository : IAsyncUserRepository
             Role = userDTO.Role,
             UserName = user.UserName
         };
-
     }
 
     private async Task<AuthModel> AssignUserToRole(ApplicationUser user, string role)
@@ -71,7 +67,7 @@ public class UserRepository : IAsyncUserRepository
 
         var result = await _userManager.AddToRoleAsync(user, role);
 
-        if (! result.Succeeded)
+        if (!result.Succeeded)
         {
             var errors = string.Join(",", result.Errors.Select(e => e.Code + " " + e.Description));
             return new AuthModel { Message = errors };
@@ -104,7 +100,7 @@ public class UserRepository : IAsyncUserRepository
 
         if (user is null)
             throw new Exception($"User by Id = {userDTO.Id} not found");
-        
+
         user.PhoneNumber = userDTO.PhoneNumber;
         user.FirstName = userDTO.FirstName;
         user.LastName = userDTO.LastName;
@@ -112,7 +108,6 @@ public class UserRepository : IAsyncUserRepository
         user.Gender = user.Gender;
         await _userManager.RemovePasswordAsync(user);
         await _userManager.AddPasswordAsync(user, userDTO.Password);
-
 
         if (user.Email != userDTO.Email &&
             await _userManager.FindByEmailAsync(userDTO.Email) is not null)
@@ -132,7 +127,6 @@ public class UserRepository : IAsyncUserRepository
             var errors = string.Join(",", result.Errors.Select(e => e.Code + " " + e.Description));
             throw new Exception(errors);
         }
-
     }
 
     public async Task<List<ApplicationUserDTO>> GetAllApplicationUsersDTOs()
@@ -141,17 +135,15 @@ public class UserRepository : IAsyncUserRepository
         var UserDTOs = _mapper.Map<List<ApplicationUserDTO>>(users);
         return UserDTOs;
     }
-
 }
 
-
-class UsersMapper : Profile
+internal class UsersMapper : Profile
 {
     public UsersMapper()
     {
         CreateMap<ApplicationUserDTO, ApplicationUser>()
-            .ForMember(dest => dest.Id , opt => opt.Ignore())
+            .ForMember(dest => dest.Id, opt => opt.Ignore())
             .ReverseMap()
-            .ForMember(dest => dest.Id , opt => opt.MapFrom(src =>  new Guid(src.Id)));
+            .ForMember(dest => dest.Id, opt => opt.MapFrom(src => new Guid(src.Id)));
     }
 }
