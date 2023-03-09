@@ -15,7 +15,7 @@ This will be done when the registrant on this site uploads a certificate
 proving that he is a doctor or an equivalent so that the project manager can confirm that he is a doctor.
 
 ### About techniques :
-#### You will see many techniques that were used in this project some of them are: CQRS pattern , mediatr pattern , automapper , user management , entity framework .
+#### You will see many techniques that were used in this project some of them are: Restful API , CQRS pattern , mediatr pattern , automapper , user management , entity framework .
 
 ### System Modeling :
 
